@@ -60,7 +60,7 @@ function threeNumberSum(array, targetSum) {
 				rightIdx--;
 			}
 			else if (sum < targetSum) {leftIdx ++}
-			else {rightIdx--};
+			else {rightIdx--}
 		}
 	}
 	return finalArr;
