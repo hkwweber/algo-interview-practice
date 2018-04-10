@@ -5,17 +5,34 @@ given BST data structure consisting of BST nodes. Each node has value (integer),
 
 // first attempt:
 function findClosestValueInBst(tree, target) {
-	let closest = { val: null, diff: Infinity };
+  let closest = { val: null, diff: Infinity };
 
 	//helper function to recurse
 	const recurser = curr => {
-		if (curr.left) recurser(curr.left);
+		if (!curr) return;
 		let currDiff = Math.abs(curr.value - target);
 		if (currDiff < closest.diff) {
 			closest = { val: curr.value, diff: currDiff };
 		}
-		if (curr.right) recurser(curr.right);
+		if (target < curr.value) return recurser(curr.left);
+		if (target > curr.value) return recurser(curr.right);
 	};
 	recurser(tree);
+	return closest.val;
+}
+
+//with a while loop:
+function findClosestValueInBst(tree, target) {
+  let closest = {val: null, diff: Infinity};
+	let curr = tree;
+	while (curr) {
+		let currDiff = Math.abs(curr.value - target);
+		if (currDiff < closest.diff) {
+			closest = {val: curr.value, diff: currDiff};
+		}
+		if (target < curr.value) curr = curr.left;
+		else if (target > curr.value) curr = curr.right;
+		else break;
+	}
 	return closest.val;
 }
