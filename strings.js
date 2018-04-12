@@ -4,15 +4,14 @@ laziest - string === string.split('').reverse().join(''); //would this be O(3n) 
 
 */
 
-// first approach - O(n) time with pointers
+//approach - O(n) time with pointers O(1) space
 function isPalindrome(string) {
-	let rightIdx = Math.floor(string.length/2);
-	let leftIdx = rightIdx - 1;
-	if (string.length%2) rightIdx ++;
-	while (leftIdx >= 0 && rightIdx < string.length) {
+	let leftIdx = 0;
+	let rightIdx = string.length-1;
+	while (leftIdx < rightIdx) {
 		if (string[leftIdx] === string[rightIdx]) {
-			leftIdx--;
-			rightIdx ++;
+			leftIdx ++;
+			rightIdx --;
 		}
 		else return false;
 	}
