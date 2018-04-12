@@ -34,13 +34,33 @@ if your first operand is less than your second, you get just that first operand 
 23%25 ==> 23
 */
 
+function caesarCipherEncryptor(string, key) { //O(2n) ==> O(n)
+	const alpha = 'abcdefghijklmnopqrstuvwxyz'; //0(1) space (unless we have some crazy long other alphabet)
+	let newArr = []; //0(1)
+	for (let i = 0; i < string.length; i++) { //O(n)
+		let currAlphaPos = alpha.indexOf(string[i]) //O(26) ==> 0(1)
+		let nextAlphaPos = (currAlphaPos + key)%26; //0(1)
+		newArr[i] = alpha[nextAlphaPos]; //0(1) //whereas if you were just concatenating a string this would be O(n)
+	}
+	return newArr.join('');  //think this must be 0(n)
+}
+
+// or this, which is the same but has more specific logic about modulo
 function caesarCipherEncryptor(string, key) {
+	key = key%26;
 	const alpha = 'abcdefghijklmnopqrstuvwxyz';
-	let newStr = '';
+	let newArr = [];
 	for (let i = 0; i < string.length; i++) {
 		let currAlphaPos = alpha.indexOf(string[i])
-		let nextAlphaPos = (currAlphaPos + key)%26;
-		newStr += alpha[nextAlphaPos];
+		let nextAlphaPos = currAlphaPos + key;
+		if (nextAlphaPos <= 25) {
+			newArr[i] = alpha[nextAlphaPos];
+		}
+		else {
+			nextAlphaPos = -1 + nextAlphaPos%25;
+		}
+		newArr[i] = alpha[nextAlphaPos];
 	}
-	return newStr;
+	return newArr.join('');
 }
+
