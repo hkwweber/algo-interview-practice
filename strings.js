@@ -64,3 +64,34 @@ function caesarCipherEncryptor(string, key) {
 	return newArr.join('');
 }
 
+
+/* LONGEST PALINDROMIC SUBSTRING
+*/
+
+//first attempt:
+
+function longestPalindromicSubstring(string) {
+	let long = '';
+	if (string.length === 1) return string;
+	for (let i = 1; i < string.length -1; i++) {
+		let palItEven = palIt(string, i-1, i+1, long);
+		let palItOdd = palIt(string, i, i+1, long);
+		long = palItOdd.length > palItEven.length ? palItOdd : palItEven;
+
+	}
+	return long;
+}
+
+//helper func
+function palIt(string, leftIdx, rightIdx, long) {
+	while (leftIdx > -1 && rightIdx < string.length) {
+			if (string[leftIdx] === string[rightIdx]) {
+				let subStr = string.slice(leftIdx, rightIdx+1);
+				long = subStr.length > long.length ? subStr : long;
+				leftIdx --;
+				rightIdx ++;
+			}
+			else break;
+		}
+	return long;
+}
