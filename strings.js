@@ -95,7 +95,7 @@ function palIt(string, leftIdx, rightIdx, long) { //O(n^2) - factoring in slice 
 }
 
 
-function longestPalindromicSubstring(string) { //O(n^2)
+function longestPalindromicSubstring(string) { //O(n^2) time, O(1) space
 	let longStart = 0;
 	let longEnd = 0;
 	if (string.length === 1) return string;
