@@ -68,28 +68,26 @@ function caesarCipherEncryptor(string, key) {
 /* LONGEST PALINDROMIC SUBSTRING
 */
 
-//first attempt:
-
+////////////////////first attempt:
 function longestPalindromicSubstring(string) {
-	let long = '';
-	if (string.length === 1) return string;
-	for (let i = 1; i < string.length -1; i++) {
-		let palItEven = palIt(string, i-1, i+1, long);
-		let palItOdd = palIt(string, i, i+1, long);
-		long = palItOdd.length > palItEven.length ? palItOdd : palItEven;
+	let long = ''; //O(1)
+	if (string.length === 1) return string; //deal with edge case
+	for (let i = 1; i < string.length -1; i++) { //o(n)
+		let palItEven = palIt(string, i-1, i+1, long); //O(n^2)
+		let palItOdd = palIt(string, i, i+1, long); //O(n^2)
+		long = palItOdd.length > palItEven.length ? palItOdd : palItEven; //O(1)
 
 	}
 	return long;
 }
-
 //helper func
-function palIt(string, leftIdx, rightIdx, long) {
-	while (leftIdx > -1 && rightIdx < string.length) {
+function palIt(string, leftIdx, rightIdx, long) { //O(n^2) - factoring in slice method
+	while (leftIdx > -1 && rightIdx < string.length) { //O(n) where n is string length ? worst case?
 			if (string[leftIdx] === string[rightIdx]) {
-				let subStr = string.slice(leftIdx, rightIdx+1);
-				long = subStr.length > long.length ? subStr : long;
-				leftIdx --;
-				rightIdx ++;
+				let subStr = string.slice(leftIdx, rightIdx+1); // O(n) i believe - slice
+				long = subStr.length > long.length ? subStr : long; //O(1)
+				leftIdx --;//O(1)
+				rightIdx ++;//O(1)
 			}
 			else break;
 		}
