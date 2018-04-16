@@ -13,5 +13,5 @@ function maxSubsetSumNoAdjacent(array) { //O(n) time, O(n) space
 		let larger = Math.max(maxSumArr[i-1], maxSumArr[i-2] + array[i]);
 		maxSumArr[i] = larger;
 	}
-	return Math.max(...maxSumArr);
+	return maxSumArr[maxSumArr.length-1];
 }
