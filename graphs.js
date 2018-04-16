@@ -20,7 +20,7 @@ class Node {
 	depthFirstSearch(array) {
 		array.push(this.name); //O(1)
 		for (let i = 0; i < this.children.length; i++) { //O(n)
-			array = array.concat(this.children[i].depthFirstSearch([])); //i would assume that the concat method is an O(n) operation
+			this.children[i].depthFirstSearch(array);
 		}
 		return array;
 	}
