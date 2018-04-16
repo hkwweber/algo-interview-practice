@@ -93,3 +93,35 @@ function palIt(string, leftIdx, rightIdx, long) { //O(n^2) - factoring in slice 
 		}
 	return long;
 }
+
+
+function longestPalindromicSubstring(string) { //O(n^2)
+	let longStart = 0;
+	let longEnd = 0;
+	if (string.length === 1) return string;
+	for (let i = 1; i < string.length -1; i++) { //O(n) everything inside loop ==> O(n^2)
+		let palItEven = palIt(string, i-1, i+1, longStart, longEnd); //O(n)
+		let palItOdd = palIt(string, i, i+1, longStart, longEnd);//O(n)
+		let newLongest = palItEven.longEnd - palItEven.longStart > palItOdd.longEnd - palItOdd.longStart ? palItEven : palItOdd;
+		longStart = newLongest.longStart;
+		longEnd = newLongest.longEnd;
+	}
+	return string.slice(longStart, longEnd+1); //O(n)
+}
+
+function palIt(string, leftIdx, rightIdx, longStart, longEnd) {
+	while (leftIdx > -1 && rightIdx < string.length) {
+			if (string[leftIdx] === string[rightIdx]) {
+				let currDiff = rightIdx - leftIdx;
+				let longDiff = longEnd - longStart;
+				if (currDiff > longDiff) {
+					longStart = leftIdx;
+					longEnd = rightIdx;
+				}
+				leftIdx --;
+				rightIdx ++;
+			}
+			else break;
+		}
+	return {longStart, longEnd};
+}
