@@ -3,6 +3,8 @@ you're given a node class that has a name and an array of optional children node
 */
 
 //depth first is this node, left child, right child
+//depth first time - O(v + e) num vertices num edges
+//space complexity - worst case is O(v) because you'd have v frames on the callstack if every node had one child. best case is O(d) where d is the depth of the tree. also, this doesn't count the array we're creating, which would be O(v) anyway.
 
 class Node {
 	constructor(name) {
