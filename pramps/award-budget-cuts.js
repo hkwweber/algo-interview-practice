@@ -14,7 +14,7 @@ example:
             # new grants is indeed 190
 */
 
-//lololol it bad
+//lololol it bad. time complexity is truly terrible but need to move on
 function findGrantsCap(grantsArray, newBudget) {
 	//sort in desc order
 	grantsArray = grantsArray.sort((a, b) => b > a);
