@@ -16,10 +16,12 @@ example:
 
 //lololol it bad
 function findGrantsCap(grantsArray, newBudget) {
+	//sort in desc order
 	grantsArray = grantsArray.sort((a, b) => b > a);
 	let currValue;
 	let currentIdx;
 	for (let i = 0; i < grantsArray.length; i++) {
+		//loop through the array. at every value, try it out as the cap (there must be a better way to do this, but for now, just mapping the arr and replacing all greater values with the cap)
 		currValue = grantsArray[i];
 		currentIdx = i;
 		let sum = grantsArray
@@ -28,13 +30,18 @@ function findGrantsCap(grantsArray, newBudget) {
 				else return el;
 			})
 			.reduce((total, el) => (total += el));
+		//if we're under newBudget, stop searching - we've found our lower cap bound
 		if (sum < newBudget) break;
+		//if we have to be right at budget, great - return current value
 		if (sum === newBudget) return currValue;
+		//if ALL of the values are too big to be cap, just return newbudget/array length
 		if (sum > newBudget && i === grantsArray.length - 1)
 			return newBudget / grantsArray.length;
 	}
+	//add up the right half of the array (the half that will be under cap)
 	let rightHalfSum = grantsArray
 		.slice(currentIdx)
 		.reduce((total, curr) => (total += curr));
+	//find the remaining budget available after adding the right half together. divide it by the number of over-cap grants we have
 	return (newBudget - rightHalfSum) / currentIdx;
 }
