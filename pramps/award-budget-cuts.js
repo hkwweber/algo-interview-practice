@@ -15,4 +15,31 @@ example:
 */
 
 
+//lololol it bad
+function findGrantsCap(grantsArray, newBudget) {
+  let sorted = grantsArray.sort((a,b) => b > a)
+  let currValue;
+  let currentIdx;
+  for (let i = 0; i < sorted.length; i++) {
+    currValue = sorted[i];
+    currentIdx = i;
+    let tester = sorted.map((el, index) => {
+      if (index <= i) return currValue;
+      else return el;
+    })
+    let sum = tester.reduce((total, el) => total+=el);
+    if (sum < newBudget) {
+      break;}
+    if (sum === newBudget) return currValue;
+    if (sum > newBudget && i === sorted.length-1) {
+      return newBudget / sorted.length;
+    }
+  }
+  let leftHalf = sorted.slice(0,currentIdx);
+  let rightHalf = sorted.slice(currentIdx);
+  let rightHalfSum = rightHalf.reduce((total, curr) => total+=curr)
+  let remainder = newBudget - rightHalfSum;
+  let cap = remainder/leftHalf.length;
+  return cap;
+}
 
