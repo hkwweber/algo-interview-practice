@@ -27,3 +27,30 @@ function bubbleSort(array) { //O(1) space
 	}
 	return array;
 }
+
+
+/*INSERTION SORT:
+insertion sort definition:
+builds the final sorted array one item at a time. less efficient on large lists than more advanced algorithms, however: it's simple, efficient if the data set is really really small
+is
+quadratic time complexity, but more efficinet in practice than most other quadratic sorting algos (like bubble sort)
+*/
+
+function insertionSort(array) {
+	//loop through the entire array
+  for (var i = 0; i < array.length; i++) {
+    let current = array[i];
+		let j = i - 1;
+		//this loop iterates through the 'sorted' part of the array that's
+		//to the left of i. move left in that part of the array until we reach the
+		//end of it. while array[j] is still greater than current, move it up one
+		//position in the array.
+		while (j > - 1 && array[j] > current) {
+			array[j + 1] = array[j];
+			j--;
+		}
+		//after you've broken out of this loop, insert current
+    array[j + 1] = current;
+  }
+  return array;
+}
