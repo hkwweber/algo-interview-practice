@@ -36,16 +36,16 @@ is
 quadratic time complexity, but more efficinet in practice than most other quadratic sorting algos (like bubble sort)
 */
 
-function insertionSort(array) {
+function insertionSort(array) { //O(n^2) time, O(1) space (since we're doing this in place)
 	//loop through the entire array
-  for (var i = 0; i < array.length; i++) {
+  for (var i = 0; i < array.length; i++) { //O(n)
     let current = array[i];
 		let j = i - 1;
 		//this loop iterates through the 'sorted' part of the array that's
 		//to the left of i. move left in that part of the array until we reach the
 		//end of it. while array[j] is still greater than current, move it up one
 		//position in the array.
-		while (j > - 1 && array[j] > current) {
+		while (j > - 1 && array[j] > current) { //O(n)
 			array[j + 1] = array[j];
 			j--;
 		}
