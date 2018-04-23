@@ -83,3 +83,24 @@ function selectionSort(array) {
 	}
 	return array;
 }
+
+
+/*
+QUICK SORT ******************************
+sometimes called partition exchange sort
+when implemented well, can be 2-3 x faster than merge or heap sort
+not stable - relative position of equivalent items is not preserved
+on avg, takes O(n log n) time
+worst case O(n^2) time
+
+process:
+-Pick an element, called a pivot, from the array.
+-Partitioning: reorder the array so that all elements with values less than the pivot come before the pivot, while all elements with values greater than the pivot come after it (equal values can go either way). After this partitioning, the pivot is in its final position. This is called the partition operation.
+-Recursively apply the above steps to the sub-array of elements with smaller values and separately to the sub-array of elements with greater values.
+
+every time we pick a pivot, it's the first value of the array
+
+time complexity
+- worst case: if your partition separates your array into one tiny array and one very long array, you're essentially running in n^2 time
+- best case: if your partition divides your array in half every single time - O(n log n). avg case is the same
+*/
