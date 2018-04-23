@@ -5,16 +5,19 @@ named for the way smaller or larger elements 'bubble' to the top of the list
 slow sort, but can be practical if the input is in mostly sorted order with some out of order elements nearly in position
 */
 
-//first attempt
+//space complexity: O(1)
+//time complexity:
+//best case is O(n) (if the array is sorted already)
+//worst case: O(n^2)
 function bubbleSort(array) { //O(1) space
-	let countSwaps = 1; //just hard coding this to not be zero at first
+	let isSorted = false;
 	let countLoops = 0; //every time we iterate through, we can look at one less element from the end, bc each time the largest num should bubble to the right
-	while (countSwaps) { //unknown time complexity
-		countSwaps = 0;
+	while (!isSorted) { //unknown time complexity
+		isSorted = true;
 		for (let i = 0; i < array.length-countLoops; i++) { //O(n)
 		let temp;
 			if (array[i] > array[i+1]) {
-				countSwaps++;
+				isSorted = false;
 				temp = array[i];
 				array[i] = array[i+1];
 				array[i+1] = temp;
