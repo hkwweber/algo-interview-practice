@@ -54,3 +54,32 @@ function insertionSort(array) { //O(n^2) time, O(1) space (since we're doing thi
   }
   return array;
 }
+
+/*
+SELECTION SORT **********************
+in place
+O(n^2) time complexity
+generally performs worse than insertion sort
+it's very simple
+divides input list into two parts: sublist of items already sorted and the sublist remaining to be sorted
+finds the smallest element in the unsorted sublist, exchanging it with the leftmost unsorted element, and moving the sublist boundary one element to the right
+*/
+
+//same as prev time and space complexity - constant space, quadratic time (O(n^2))
+function selectionSort(array) {
+	let leftMostUnsortedPos = 0;
+	while (leftMostUnsortedPos < array.length -1) { //O(n)
+		let smallest = Infinity;
+		let smallestIdx;
+		for (let i = leftMostUnsortedPos; i < array.length; i++) { //O(n)
+			if (array[i] < smallest) {
+				smallest = array[i];
+				smallestIdx = i;
+			}
+		}
+		array[smallestIdx] = array[leftMostUnsortedPos];
+		array[leftMostUnsortedPos] = smallest;
+		leftMostUnsortedPos++;
+	}
+	return array;
+}
