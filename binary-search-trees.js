@@ -133,5 +133,12 @@ approach: every node has a min value and max value
 
 //first approach
 //time complexity - O(n) - have to look at every value in BST but only doing constant time operations on them
-//space complexity - not creating any new data structures but adding to the callstack - O(d) - depth (depth is the length of the longest branch)
+//space complexity - not creating any new data structures but adding to the callstack - O(d) - depth (depth is the length of the longest branch). if tree only had one branch, space would be O(n) because d = n
 
+function validateBst(tree, min = -Infinity, max = Infinity) {
+	if (!tree) return true;
+	if (tree.value < min || tree.value >= max) return false;
+	let leftIsValid = validateBst(tree.left, min, tree.value);
+	let rightIsValid = validateBst(tree.right, tree.value, max);
+	return leftIsValid && rightIsValid;
+}
