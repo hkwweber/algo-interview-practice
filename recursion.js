@@ -23,3 +23,18 @@ function getNthFib(n, cache = {1: 0, 2: 1}) {
 	cache[n] = getNthFib(n-1, cache) + getNthFib(n-2, cache)
 	return cache[n];
 }
+
+//3rd approach - iterative
+//O(n) time and O(1) space
+function getNthFib(n) {
+	let recentFibs = [0,1];
+	let counter = 3;
+	let sum;
+	while (counter <= n) {
+		sum = recentFibs[0] + recentFibs[1];
+		recentFibs[0] = recentFibs[1];
+		recentFibs[1] = sum;
+		counter++;
+	}
+	return n > 1 ? recentFibs[1] : recentFibs[0];
+}
