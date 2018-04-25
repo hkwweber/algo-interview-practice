@@ -123,3 +123,15 @@ class BST {
 		return currTree.value;
 	}
 }
+
+/*VALIDATE A BST ***************************************************************************
+all left children are strictly less than parent, all right children are greater than or equal to
+all children are either BSTs or null
+approach: every node has a min value and max value
+
+*/
+
+//first approach
+//time complexity - O(n) - have to look at every value in BST but only doing constant time operations on them
+//space complexity - not creating any new data structures but adding to the callstack - O(d) - depth (depth is the length of the longest branch)
+
