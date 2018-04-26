@@ -142,3 +142,41 @@ function validateBst(tree, min = -Infinity, max = Infinity) {
 	let rightIsValid = validateBst(tree.right, tree.value, max);
 	return leftIsValid && rightIsValid;
 }
+
+/*BST TRAVERSAL ************************************************************************
+//BST refresher
+//strictly greater than the values of every node to left
+//less than or equal to the valeus of every node to its right
+*/
+
+//complexity of all three below functions:
+//time: O(n), space O(n) since we're creating an array w every val. if we didnt have an array, it would be O(d) where d is depth (longest branch)
+function inOrderTraverse(tree, array) {
+// 	(a) Inorder (Left, Root, Right) : 4 2 5 1 3
+	if (tree) {
+		inOrderTraverse(tree.left, array);
+		array.push(tree.value);
+		inOrderTraverse(tree.right, array);
+	}
+	return array;
+}
+
+function preOrderTraverse(tree, array) {
+  // (b) Preorder (Root, Left, Right) : 1 2 4 5 3
+	if (tree) {
+		array.push(tree.value);
+		preOrderTraverse(tree.left, array);
+		preOrderTraverse(tree.right, array);
+	}
+	return array;
+}
+
+function postOrderTraverse(tree, array) {
+	// (c) Postorder (Left, Right, Root) : 4 5 2 3 1
+	if (tree) {
+		postOrderTraverse(tree.left, array);
+		postOrderTraverse(tree.right, array);
+		array.push(tree.value);
+	}
+	return array;
+}
