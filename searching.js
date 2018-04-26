@@ -52,3 +52,23 @@ function findThreeLargestNumbers(array) { //O(n log n) time, o(1) space
 	let res = [array[2], array[1],array[0]];
 	return res;
 }
+
+function findThreeLargestNumbers(array) { //O(n)
+ let largest = [-Infinity, -Infinity, -Infinity];
+ for (let i = 0; i < array.length; i++) {
+	let curr = array[i];
+	if (curr > largest[2]) {
+		largest[0] = largest[1];
+		largest[1] = largest[2];
+		largest[2] = curr;
+	}
+	 else if (curr > largest[1]) {
+		 largest[0] = largest[1];
+		 largest[1] = curr;
+	 }
+	 else if (curr > largest[0]) {
+		 largest[0] = curr;
+	 }
+ }
+	return largest;
+}
