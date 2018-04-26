@@ -53,7 +53,7 @@ function findThreeLargestNumbers(array) { //O(n log n) time, o(1) space
 	return res;
 }
 
-function findThreeLargestNumbers(array) { //O(n)
+function findThreeLargestNumbers(array) { //O(n), constant space
  let largest = [-Infinity, -Infinity, -Infinity];
  for (let i = 0; i < array.length; i++) {
 	let curr = array[i];
