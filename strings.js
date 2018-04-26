@@ -125,3 +125,36 @@ function palIt(string, leftIdx, rightIdx, longStart, longEnd) {
 		}
 	return {longStart, longEnd};
 }
+
+/* ANAGRAM CHECKER *****************************************************************
+return true if two strings are anagrams of each other, false if not
+*/
+
+//first attempt - //O(n log n) time
+const anagram = (strA, strB) => {
+  strA = strA.split('').sort().join('');
+  strB = strB.split('').sort().join('');
+  return strA === strB;
+}
+
+//second attempt - //O(3n) ==> O(n) time
+//helper function for anagram below
+const objectMaker = (str) => {
+  let obj = {};
+  for (let i = 0; i < str.length; i++) {
+    if (obj[str[i]]) obj[str[i]]++;
+    else obj[str[i]] = 1;
+  }
+  return obj;
+}
+
+const anagram = (strA, strB) => {
+  if (strA.length !== strB.length) return false;
+  const aObj = objectMaker(strA);//O(n)
+  const bObj = objectMaker(strB);//O(n)
+  for (let letter in aObj) { //O(n)
+    if (aObj[letter] !== bObj[letter]) return false;
+  }
+  return true;
+}
+
