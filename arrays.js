@@ -71,14 +71,14 @@ function threeNumberSum(array, targetSum) {
 SMALLEST DIFFERENCE
 write a function that takes in two non-empty arrays of integers. find the pair of numbers (one from first array, one from second array) whose absolute difference is closest to zero. return an array containing these two numbers, with the number from the first array in the first position. assume there will only be one pair of nums with the smallest difference
 */
-function smallestDifference(arrayOne, arrayTwo) {
+function smallestDifference(arrayOne, arrayTwo) { //O(n log n) + O(m log m) (n is arrayone length, m is arraytwo length) // O(1) space complexity
 	arrayOne = arrayOne.sort((a,b) => a > b); //O(n log n)
-	arrayTwo = arrayTwo.sort((a,b) => a > b); //O(n log n)
+	arrayTwo = arrayTwo.sort((a,b) => a > b); //O(m log m)
 	let onePointer = 0;
 	let twoPointer = 0;
 	let smallestDiff = Infinity;
 	let resArr = [];
-	while (onePointer < arrayOne.length && twoPointer < arrayTwo.length) { //O(n) where n is the length of the larger arr?
+	while (onePointer < arrayOne.length && twoPointer < arrayTwo.length) { //O(n + m)
 		let oneVal = arrayOne[onePointer];
 		let twoVal = arrayTwo[twoPointer];
 		let currDiff = Math.abs(oneVal- twoVal);
