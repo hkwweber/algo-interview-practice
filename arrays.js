@@ -72,29 +72,23 @@ SMALLEST DIFFERENCE
 write a function that takes in two non-empty arrays of integers. find the pair of numbers (one from first array, one from second array) whose absolute difference is closest to zero. return an array containing these two numbers, with the number from the first array in the first position. assume there will only be one pair of nums with the smallest difference
 */
 function smallestDifference(arrayOne, arrayTwo) { //O(n log n) + O(m log m) (n is arrayone length, m is arraytwo length) // O(1) space complexity
-	arrayOne = arrayOne.sort((a,b) => a > b); //O(n log n)
-	arrayTwo = arrayTwo.sort((a,b) => a > b); //O(m log m)
-	let onePointer = 0;
-	let twoPointer = 0;
-	let smallestDiff = Infinity;
-	let resArr = [];
+	arrayOne.sort((a,b) => a > b); //O(n log n)
+	arrayTwo.sort((a,b) => a > b); //O(m log m)
+	let onePointer = 0,
+			twoPointer = 0,
+			smallestDiff = Infinity,
+			resArr = [];
 	while (onePointer < arrayOne.length && twoPointer < arrayTwo.length) { //O(n + m)
-		let oneVal = arrayOne[onePointer];
-		let twoVal = arrayTwo[twoPointer];
-		let currDiff = Math.abs(oneVal- twoVal);
-		if (oneVal === twoVal) {
-			return [oneVal, twoVal];
-		}
+		let oneVal = arrayOne[onePointer],
+				twoVal = arrayTwo[twoPointer],
+				currDiff = Math.abs(oneVal- twoVal);
+		if (oneVal === twoVal) return [oneVal, twoVal];
 		if (currDiff < smallestDiff) {
 			smallestDiff = currDiff;
 			resArr = [oneVal, twoVal];
 		}
-		if (oneVal < twoVal) {
-			onePointer++;
-		}
-		else {
-			twoPointer++;
-		}
+		if (oneVal < twoVal) onePointer++;
+		else twoPointer++;
 	}
 	return resArr;
 }

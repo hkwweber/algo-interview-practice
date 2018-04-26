@@ -40,3 +40,15 @@ function binarySearch(array, target) {
 	}
 	return array[startIdx] === target ? startIdx : -1;
 }
+
+
+/*
+FIND THREE LARGEST NUMBERS*****************************************************
+takes array and returns a sorted array of three largest integers. should return duplicate integers if necessary
+*/
+
+function findThreeLargestNumbers(array) { //O(n log n) time, o(1) space
+ array = array.sort((a,b) => b - a)
+	let res = [array[2], array[1],array[0]];
+	return res;
+}
