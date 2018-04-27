@@ -180,3 +180,37 @@ function postOrderTraverse(tree, array) {
 	}
 	return array;
 }
+
+
+/*
+INVERT BINARY TREE ************************************************************
+make a mirror image of binary tree
+the function should swap every left node for its mirroring right node
+*/
+
+//recursive approach
+function invertBinaryTree(tree) { //time is O(n), space is O(d) where d is depth. apparently depth is also log n?
+	if (tree) {
+		let temp = tree.left;
+		tree.left = tree.right;
+		tree.right = temp;
+		invertBinaryTree(tree.left);
+		invertBinaryTree(tree.right);
+	}
+	return tree;
+}
+
+//breadth first approach with a queue
+function invertBinaryTree(tree) {  //O(n) time, O(n) space because maintaining queue
+	let queue = [tree];
+	while (queue.length) {
+		let curr = queue.shift();
+		if (curr) {
+			let temp = curr.left;
+			curr.left = curr.right;
+			curr.right = temp;
+			queue.push(curr.left);
+			queue.push(curr.right);
+		}
+	}
+}
