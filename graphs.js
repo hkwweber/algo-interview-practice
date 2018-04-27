@@ -61,3 +61,58 @@ class Node {
 		return array;
 	}
 }
+
+
+/*RIVER SIZES ********************************************************
+given a two dimensional array of potentially unequal height and width containing only Os and 1s. each 0 represents land and each 1 represents part of a river. a river consisnts of any number of 1s that are either horizontally or vertically adjacent (but not diagonally adjacent). the number of adjacent 1st form a river determine its size. write a func that retursn an array of the sizes of all rivers represented in the input matrix. sizes do not need to be in any order.
+
+treat as a graph
+treat every element in matrix as a node
+each node has 4 neighboring nodes - above, below, left, right
+if node has val 1, it's part of river
+keep track of nodes we've visited, and skip it if we've already been there
+
+time: O(n) (or w * h) where n is number of nodes. we're just visiting every node once
+space: the same - building auxilary data structure to track whether its been visited
+*/
+function riverSizes(matrix) {
+	let sizes = [],
+  		visited = [];
+	matrix.forEach(el => {
+		visited.push(el.map(innerEl => false));
+	})
+	for (let i = 0; i < matrix.length; i++) {
+		for (let j = 0; j < matrix[i].length; j++) {
+			if (visited[i][j]) continue;
+			traverseNode(i, j, matrix, visited, sizes);
+		}
+	}
+	return sizes;
+}
+
+function traverseNode(i, j, matrix, visited, sizes) {
+	let currRiverSize = 0;
+	let nodesToExplore = [[i,j]]
+	while (nodesToExplore.length) {
+		let currNode = nodesToExplore.pop();
+		let i = currNode[0];
+		let j = currNode[1];
+		if (visited[i][j]) continue;
+		visited[i][j] = true;
+		if (matrix[i][j] === 0) continue;
+		currRiverSize += 1;
+		let unvisitedNeighbors = getUnvisitedNeighbors(i, j, matrix, visited);
+		unvisitedNeighbors.forEach(neighbor => nodesToExplore.push(neighbor));
+	}
+	if (currRiverSize) sizes.push(currRiverSize);
+
+}
+
+function getUnvisitedNeighbors(i, j, matrix, visited) {
+	let unvisited = [];
+	if (i > 0 && !visited[i-1][j]) unvisited.push([i-1,j]);
+	if (i < matrix.length-1 && !visited[i+1][j]) unvisited.push([i+1,j]);
+	if (j > 0 && !visited[i][j-1]) unvisited.push([i, j-1]);
+	if (j < matrix[i].length-1 && !visited[i][j+1]) unvisited.push([i, j+1]);
+	return unvisited;
+}
