@@ -105,7 +105,6 @@ function traverseNode(i, j, matrix, visited, sizes) {
 		unvisitedNeighbors.forEach(neighbor => nodesToExplore.push(neighbor));
 	}
 	if (currRiverSize) sizes.push(currRiverSize);
-
 }
 
 function getUnvisitedNeighbors(i, j, matrix, visited) {

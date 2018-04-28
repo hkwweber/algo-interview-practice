@@ -38,3 +38,28 @@ function getNthFib(n) {
 	}
 	return n > 1 ? recentFibs[1] : recentFibs[0];
 }
+
+
+/*PERMUTATIONS******************************************************************************
+
+
+*/
+
+function getPermutations(array) {
+	if (!array.length) return [];
+	let results = [[array.shift()]];
+	while (array.length) {
+		let currNum = array.shift();
+		let tempResults = [];
+		for (let i = 0; i < results.length; i++) {
+		let resultsCopy = results.slice();
+			for (let j = 0; j <= results[i].length; j++) {
+				let resultsCopy = results[i].slice();
+				resultsCopy.splice(j, 0, currNum);
+				tempResults.push(resultsCopy);
+			}
+		}
+		results = tempResults.slice();
+	}
+	return results;
+}
