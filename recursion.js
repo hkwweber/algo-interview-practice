@@ -41,11 +41,11 @@ function getNthFib(n) {
 
 
 /*PERMUTATIONS******************************************************************************
-
+given an array of integers, return an array of all permuations of that array of integers
 
 */
 
-function getPermutations(array) {
+function getPermutations(array) { //not recursive but hey
 	if (!array.length) return [];
 	let results = [[array.shift()]];
 	while (array.length) {
