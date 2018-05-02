@@ -20,7 +20,8 @@ function intersection(arr1, arr2) {
 
 // Follow-up: now consider what you might do if the given arrays are not sorted.
 
-function intersection(arr1, arr2) { //O(n+m) time still, but now O(n) space as well where n is the length of the smaller array
+function intersection(arr1, arr2) {
+  //O(n+m) time still, but now O(n) space as well where n is the length of the smaller array
   let larger = arr1.length > arr2.length ? arr1 : arr2,
     smaller = arr1.length < arr2.length ? arr1 : arr2,
     smallerSet = new Set(smaller);
