@@ -14,7 +14,6 @@ so each node's parent is at (i-1)/2 rounded down
 
 
 implement a min heap class. the class should support insertion, removal (of the minimum/root value), peeking (of the minimum/ root value), as well as sifting a value up and down the heap and building the heap from an input array. the heap should be represented as an array
-
 */
 
 //partial implementation - all work except buildHeap
