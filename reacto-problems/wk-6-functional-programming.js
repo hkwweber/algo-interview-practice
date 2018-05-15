@@ -96,3 +96,8 @@ const partiallyApply = (myFunc, arg1) => {
 const adder = (a, b) => a + b;
 const addTwo = partiallyApply(adder, 2);
 addTwo(10)
+
+//partial application with bind:
+// const adder = (a, b) => a + b;
+// const addTwo = adder.bind(null, 2);
+// addTwo(10)
