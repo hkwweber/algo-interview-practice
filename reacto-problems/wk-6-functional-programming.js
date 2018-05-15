@@ -46,3 +46,39 @@ adderSpy.wasCalledWith(2); // true
 adderSpy.wasCalledWith(0); // false
 adderSpy.returned(6); // true
 adderSpy.returned(9); // false
+
+//EVENT EMITTER CLASS:
+//  Exercise: build an EventEmitter class. Instances should have two methods: on and emit. on takes an event name and a handler function, and registers that handler callback for that event name. emit takes an event name and some data, and invokes all callbacks registered to that event name (with the given data).
+// Follow-up: make on return a function that "deregisters" the given handler.
+
+class EventEmitter {
+  constructor() {
+    this.events = {};
+  }
+
+  on(evt, handler) {
+    if (!this.events[evt]) this.events[evt] = [];
+    this.events[evt].push(handler);
+    return this.deregister.bind(this, evt, handler);
+  }
+
+  deregister(evt, handler) {
+    const idx = this.events[evt].indexOf(handler);
+    this.events[evt].splice(idx, 1);
+  }
+
+  emit(evt, payload) {
+    this.events[evt].forEach(handler => handler(payload));
+  }
+}
+
+//test cases
+let eventE = new EventEmitter();
+const sayHi = name => console.log(`Hello there ${name}`);
+const stopIt = name => console.log(`Stooooop ${name}`);
+const sayBye = name => console.log(`Boy bye ${name}`);
+eventE.on("sayHello", sayHi);
+eventE.on("shush", stopIt);
+eventE.on("sayHello", sayBye);
+// eventE.emit('shush', 'Noah');
+eventE.emit("sayHello", "Hannah");
