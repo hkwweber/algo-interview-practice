@@ -82,3 +82,17 @@ eventE.on("shush", stopIt);
 eventE.on("sayHello", sayBye);
 // eventE.emit('shush', 'Noah');
 eventE.emit("sayHello", "Hannah");
+
+
+//using closure for partial application
+
+const partiallyApply = (myFunc, arg1) => {
+  const partiallyAppliedFn = (arg2) => {
+    return myFunc(arg1, arg2);
+  }
+  return partiallyAppliedFn;
+}
+
+const adder = (a, b) => a + b;
+const addTwo = partiallyApply(adder, 2);
+addTwo(10)
